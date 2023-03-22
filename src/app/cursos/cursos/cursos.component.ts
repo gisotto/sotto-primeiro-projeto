@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-interface ICursos {
-  nome: string;
-  valor: number;
-}
+import { ICursos, CursosService } from '../cursos.service';
+
 @Component({
   selector: 'app-cursos',
   templateUrl: './cursos.component.html',
@@ -11,13 +9,10 @@ interface ICursos {
 export class CursosComponent {
 
   public nomePortal: string = 'http://loiane.training';
-  public cursos: ICursos[] = [
-    { nome: 'Java', valor: 6 },
-    { nome: 'Ext Js', valor: 2 },
-    { nome: 'Angular', valor: 8 }
-  ];
+  public cursos: ICursos[];
 
-  constructor() {
+  constructor(private service: CursosService) {
+    this.cursos = this.service.getCursos();
   }
 
 }
